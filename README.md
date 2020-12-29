@@ -1,7 +1,13 @@
 # HorseBettingApp
 
+## Technologies
+Project is created with:
+* Angular: 11.0.5
+* Bootstrap version: 4.5.3
+
 ## Clone the repo
-Git Repo : https://github.com/narenmuppu/atg-coding-challenge.git
+git clone https://github.com/narenmuppu/atg-coding-challenge.git atg-coding_challenge
+cd atg-coding_challenge
 
 ## Install packages
 npm install
