@@ -1,0 +1,82 @@
+<h3 class="title">Horse Racing Application</h3>
+<div class="game-search">
+  <input id="gameType" name="gameType" type="text" placeholder="Enter Game Type" class="game-input" [(ngModel)]="gameType"
+  autofocus required minlength="2" maxlength="3">
+  <button id="gamesearch-btn" class="btn btn-primary" type="submit" (click)="searchGame()">Search</button>
+</div>
+
+<ng-container *ngIf="blnUpcoming">
+  <div *ngFor="let upcoming of upcomingGames; index as i">
+    <div class="container mt-4">
+      <div class="table-responsive">
+        <div *ngFor="let race of gameResRaceData[i]">
+          <h5>{{betType}}-{{race.number}} {{race.name}} - {{race.date}} {{race.startTime | slice: 11: 16}}</h5>
+          <table class="table table-sm table-hover table-bordered table-striped">
+            <thead>
+              <tr class="bg-dark text-white">
+                <th scope="col">Position</th>
+                <th scope="col">Horse</th>
+                <th scope="col">Rider</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let starts of race.starts">
+                <tr data-toggle="collapse" attr.data-target="#collapse-{{race.id}}{{starts.number}}"
+                  class="accordion-toggle">
+                  <ng-container>
+                    <th scope="row">{{starts.number}}</th>
+                    <td>{{starts.horse.name}}</td>
+                    <td>{{starts.driver.firstName}} {{starts.driver.lastName}}</td>
+                  </ng-container>
+                </tr>
+                <div attr.id="collapse-{{race.id}}{{starts.number}}" class="collapse">
+                  <p>Trainer Name : <span>{{starts.horse.trainer.firstName}} {{starts.horse.trainer.lastName}}</span>
+                  </p>
+                  <p>Horse Father Name : <span>{{starts.horse.pedigree.father.name}}</span> </p>
+                </div>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="blnResults">
+  <div *ngFor="let results of results; index as i">
+    <div class="container mt-4">
+      <div class="table-responsive">
+        <div *ngFor="let race of gameResRaceData[i]">
+          <h5>{{betType}}-{{race.number}} {{race.name}} - {{race.date}} {{race.startTime | slice: 11: 16}}</h5>
+          <table class="table table-sm table-hover table-bordered table-striped">
+            <thead>
+              <tr class="bg-dark text-white">
+                <th scope="col">Position</th>
+                <th scope="col">Horse</th>
+                <th scope="col">Rider</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let starts of race.starts">
+                <tr data-toggle="collapse" attr.data-target="#collapse-{{race.id}}{{starts.number}}"
+                  class="accordion-toggle">
+                  <ng-container>
+                    <th scope="row">{{starts.number}}</th>
+                    <td>{{starts.horse.name}}</td>
+                    <td>{{starts.driver.firstName}} {{starts.driver.lastName}}</td>
+                  </ng-container>
+                </tr>
+                <div attr.id="collapse-{{race.id}}{{starts.number}}" class="collapse" style="width: 100%">
+                  <p>Trainer Name : <span>{{starts.horse.trainer.firstName}} {{starts.horse.trainer.lastName}}</span>
+                  </p>
+                  <p>Horse Father Name : <span>{{starts.horse.pedigree.father.name}}</span> </p>
+                </div>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
